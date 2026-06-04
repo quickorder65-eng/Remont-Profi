@@ -33,13 +33,40 @@ let leadData = {
   utmCampaign: utmParams.utmCampaign
 };
 
-function sendLeadToCRM(data) {
+async function sendLeadToCRM(data) {
   data.createdAt = new Date().toISOString();
-  data.pageUrl   = window.location.href;
+  data.pageUrl = window.location.href;
 
-  console.log('=== LEAD ===', JSON.stringify(data, null, 2));
+  console.log('=== LEAD DATA ===');
+  console.log(JSON.stringify(data, null, 2));
+  console.log('=================');
 
   trackEvent('lead_submit', data);
+
+  try {
+    const response = await fetch('/api/send-telegram', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    console.log('Telegram function response:', result);
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || 'Telegram sending failed');
+    }
+
+    console.log('Lead sent to Telegram successfully');
+
+  } catch (error) {
+    console.error('Lead sending failed:', error);
+
+    alert('Заявка сохранена, но Telegram не подключился. Проверь Vercel Function и переменные.');
+  }
 }
 
 function formatLeadMessage(data) {
@@ -70,7 +97,6 @@ const quizAnswers = {
 };
 
 function selectOption(btn, step) {
-
   const siblings = btn.parentElement.querySelectorAll('.quiz__option');
   siblings.forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
@@ -86,7 +112,6 @@ function selectOption(btn, step) {
     if (step < TOTAL_STEPS) {
       goToStep(step + 1);
     } else {
-
       trackEvent('quiz_complete', quizAnswers);
       showSummary();
     }
@@ -94,7 +119,6 @@ function selectOption(btn, step) {
 }
 
 function goToStep(stepNum) {
-
   document.querySelectorAll('.quiz__step').forEach(s => s.classList.remove('active'));
 
   const target = document.getElementById('quizStep' + stepNum);
@@ -110,16 +134,19 @@ function updateProgress(current, total) {
   const pct = Math.round((current / total) * 100);
   const fill = document.getElementById('quizProgressFill');
   const label = document.getElementById('quizProgressLabel');
-  if (fill)  fill.style.width = pct + '%';
+
+  if (fill) fill.style.width = pct + '%';
   if (label) label.textContent = 'Шаг ' + current + ' из ' + total;
 }
 
 function showSummary() {
   document.querySelectorAll('.quiz__step').forEach(s => s.classList.remove('active'));
+
   const summary = document.getElementById('quizSummary');
   if (summary) summary.classList.add('active');
 
   const container = document.getElementById('summaryAnswers');
+
   if (container) {
     const labels = {
       objectType:  quizAnswers.objectType  || '—',
@@ -129,6 +156,7 @@ function showSummary() {
       startTime:   quizAnswers.startTime   || '—',
       priority:    quizAnswers.priority    || '—'
     };
+
     container.innerHTML = Object.values(labels)
       .filter(v => v !== '—')
       .map(v => `<span class="summary__tag">${v}</span>`)
@@ -141,6 +169,7 @@ function showSummary() {
 
 function showQuizForm() {
   document.querySelectorAll('.quiz__step').forEach(s => s.classList.remove('active'));
+
   const formStep = document.getElementById('quizFormStep');
   if (formStep) formStep.classList.add('active');
 }
@@ -165,6 +194,7 @@ function submitQuizForm(event) {
   }
 
   const digits = phoneInput.value.replace(/\D/g, '');
+
   if (digits.length < 10) {
     phoneInput.classList.add('error');
     phoneErr.classList.add('visible');
@@ -191,6 +221,7 @@ function submitQuizForm(event) {
   sendLeadToCRM(lead);
 
   document.querySelectorAll('.quiz__step').forEach(s => s.classList.remove('active'));
+
   const success = document.getElementById('quizSuccess');
   if (success) success.classList.add('active');
 }
@@ -198,10 +229,10 @@ function submitQuizForm(event) {
 function submitFinalForm(event) {
   event.preventDefault();
 
-  const nameInput = document.getElementById('ctaName');
+  const nameInput  = document.getElementById('ctaName');
   const phoneInput = document.getElementById('ctaPhone');
-  const nameErr   = document.getElementById('ctaNameError');
-  const phoneErr  = document.getElementById('ctaPhoneError');
+  const nameErr    = document.getElementById('ctaNameError');
+  const phoneErr   = document.getElementById('ctaPhoneError');
 
   let valid = true;
 
@@ -215,6 +246,7 @@ function submitFinalForm(event) {
   }
 
   const digits = phoneInput.value.replace(/\D/g, '');
+
   if (digits.length < 10) {
     phoneInput.classList.add('error');
     phoneErr.classList.add('visible');
@@ -236,12 +268,14 @@ function submitFinalForm(event) {
 
   const form    = document.getElementById('finalCtaForm');
   const success = document.getElementById('finalFormSuccess');
-  if (form)    form.style.display = 'none';
+
+  if (form) form.style.display = 'none';
   if (success) success.style.display = 'block';
 
   setTimeout(() => {
-    if (form)    form.style.display = '';
+    if (form) form.style.display = '';
     if (success) success.style.display = 'none';
+
     nameInput.value = '';
     phoneInput.value = '';
   }, 8000);
@@ -260,18 +294,20 @@ function toggleChat() {
 
 function openChat() {
   const win = document.getElementById('chatWindow');
+
   if (win) {
     win.style.display = 'flex';
-
     win.style.animation = 'none';
     void win.offsetWidth;
     win.style.animation = 'slideUp .22s ease';
   }
+
   chatOpen = true;
   trackEvent('bot_open', {});
 
   if (!chatGreeted) {
     chatGreeted = true;
+
     setTimeout(() => {
       addBotMessage('Здравствуйте! Я помогу сориентироваться по ремонту: стоимость, сроки, смета, этапы и заявка в WhatsApp.');
     }, 100);
@@ -280,39 +316,52 @@ function openChat() {
 
 function closeChat() {
   const win = document.getElementById('chatWindow');
+
   if (win) win.style.display = 'none';
+
   chatOpen = false;
 }
 
 function addBotMessage(text) {
   const container = document.getElementById('chatMessages');
+
   if (!container) return;
 
   const msg = document.createElement('div');
   msg.className = 'chat-msg chat-msg--bot';
   msg.textContent = text;
+
   container.appendChild(msg);
   container.scrollTop = container.scrollHeight;
 }
 
 function addUserMessage(text) {
   const container = document.getElementById('chatMessages');
+
   if (!container) return;
 
   const msg = document.createElement('div');
   msg.className = 'chat-msg chat-msg--user';
   msg.textContent = text;
+
   container.appendChild(msg);
   container.scrollTop = container.scrollHeight;
 }
 
 function addBotLink(text, href) {
   const container = document.getElementById('chatMessages');
+
   if (!container) return;
 
   const msg = document.createElement('div');
   msg.className = 'chat-msg chat-msg--bot';
-  msg.innerHTML = text + (href ? ` <a href="${href}" style="color:var(--clr-accent);text-decoration:underline;display:block;margin-top:8px;" target="_blank" onclick="trackEvent('whatsapp_click',{location:'chat'})">${href.startsWith('https://wa.me') ? '→ Написать в WhatsApp' : '→ Подробнее'}</a>` : '');
+
+  msg.innerHTML = text + (
+    href
+      ? ` <a href="${href}" style="color:var(--clr-accent);text-decoration:underline;display:block;margin-top:8px;" target="_blank" onclick="trackEvent('whatsapp_click',{location:'chat'})">${href.startsWith('https://wa.me') ? '→ Написать в WhatsApp' : '→ Подробнее'}</a>`
+      : ''
+  );
+
   container.appendChild(msg);
   container.scrollTop = container.scrollHeight;
 }
@@ -349,13 +398,12 @@ const chatResponses = {
 
 function chatQuickReply(key) {
   const resp = chatResponses[key];
+
   if (!resp) return;
 
   trackEvent('bot_quick_reply_click', { key });
 
   addUserMessage(resp.user);
-
-  const qr = document.getElementById('chatQuickReplies');
 
   setTimeout(() => {
     if (resp.link) {
@@ -378,6 +426,7 @@ function submitChatContactForm(event) {
   const phoneInput = document.getElementById('chatPhone');
 
   const digits = phoneInput.value.replace(/\D/g, '');
+
   if (!nameInput.value.trim() || digits.length < 10) {
     addBotMessage('Пожалуйста, введите имя и корректный номер телефона.');
     return;
@@ -394,6 +443,7 @@ function submitChatContactForm(event) {
   trackEvent('bot_lead', lead);
 
   const form = document.getElementById('chatContactForm');
+
   if (form) form.style.display = 'none';
 
   addBotMessage('Заявка принята! Менеджер свяжется с вами в WhatsApp.');
@@ -414,6 +464,7 @@ function toggleMobileNav() {
   nav.classList.toggle('open');
   overlay.classList.toggle('show');
   burger.classList.toggle('open');
+
   document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
 }
 
@@ -425,6 +476,7 @@ function closeMobileNav() {
   nav.classList.remove('open');
   overlay.classList.remove('show');
   burger.classList.remove('open');
+
   document.body.style.overflow = '';
 }
 
@@ -440,17 +492,17 @@ function toggleFaq(item) {
 
 (function initHeaderScroll() {
   const header = document.getElementById('header');
+
   if (!header) return;
 
-  let lastScroll = 0;
   window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
+
     if (currentScroll > 60) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
     }
-    lastScroll = currentScroll;
   }, { passive: true });
 })();
 
@@ -465,6 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if ('IntersectionObserver' in window) {
     const priceCards = document.querySelectorAll('.price-card');
+
     const priceObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -473,37 +526,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, { threshold: .5 });
+
     priceCards.forEach(c => priceObs.observe(c));
   }
 });
 
 document.addEventListener('click', (e) => {
   const anchor = e.target.closest('a[href^="#"]');
+
   if (!anchor) return;
 
   const id = anchor.getAttribute('href').slice(1);
+
   if (!id) return;
 
   const target = document.getElementById(id);
+
   if (!target) return;
 
   e.preventDefault();
-  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  target.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
 });
 
 document.addEventListener('input', (e) => {
   if (e.target.type !== 'tel') return;
+
   let val = e.target.value.replace(/\D/g, '');
+
   if (val.startsWith('8')) val = '7' + val.slice(1);
   if (val.length > 11) val = val.slice(0, 11);
 
   if (val.length > 0) {
     let formatted = '+' + val[0];
-    if (val.length > 1)  formatted += ' (' + val.slice(1, 4);
-    if (val.length > 4)  formatted += ') ' + val.slice(4, 7);
-    if (val.length > 7)  formatted += '-' + val.slice(7, 9);
-    if (val.length > 9)  formatted += '-' + val.slice(9, 11);
+
+    if (val.length > 1) formatted += ' (' + val.slice(1, 4);
+    if (val.length > 4) formatted += ') ' + val.slice(4, 7);
+    if (val.length > 7) formatted += '-' + val.slice(7, 9);
+    if (val.length > 9) formatted += '-' + val.slice(9, 11);
     if (val.length >= 2 && val.length <= 3) formatted += ')';
+
     e.target.value = formatted;
   }
 });
