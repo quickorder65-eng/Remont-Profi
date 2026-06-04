@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RemontProfi — Ремонт квартир в Алматы с понятной сметой</title>
+    <meta name="description" content="Ремонт квартир и домов в Алматы. Понятная смета до начала работ, гарантия до 3 лет, оплата по этапам. Рассчитайте стоимость за 2 минуты.">
+    <meta name="keywords" content="ремонт квартир Алматы, ремонт под ключ, капитальный ремонт, евроремонт, смета ремонта">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header" id="header">
+    <div class="container">
+        <div class="header__inner">
+            <a href="#" class="header__logo">
+                <span class="logo__mark">R</span>
+                <span class="logo__text">Remont<strong>Profi</strong></span>
+            </a>
+            <nav class="header__nav" id="mainNav">
+                <a href="#quiz"     class="nav__link" onclick="trackEvent('nav_click',{link:'quiz'})">Расчёт</a>
+                <a href="#cases"    class="nav__link" onclick="trackEvent('nav_click',{link:'cases'})">Объекты</a>
+                <a href="#prices"   class="nav__link" onclick="trackEvent('nav_click',{link:'prices'})">Цены</a>
+                <a href="#trust"    class="nav__link" onclick="trackEvent('nav_click',{link:'trust'})">Гарантии</a>
+                <a href="#faq"      class="nav__link" onclick="trackEvent('nav_click',{link:'faq'})">FAQ</a>
+                <a href="#contacts" class="nav__link" onclick="trackEvent('nav_click',{link:'contacts'})">Контакты</a>
+            </nav>
+            <div class="header__actions">
+                <a href="tel:+77775127772" class="header__phone" onclick="trackEvent('phone_click',{location:'header'})">
+                    +7 777 512 7772
+                </a>
+                <a href="https://wa.me/77775127772?text=Здравствуйте,%20хочу%20рассчитать%20стоимость%20ремонта"
+                   class="btn btn--wa btn--sm" target="_blank"
+                   onclick="trackEvent('whatsapp_click',{location:'header'})">
+                    WhatsApp
+                </a>
+                <a href="#quiz" class="btn btn--primary btn--sm"
+                   onclick="trackEvent('hero_cta_click',{location:'header'})">
+                    Рассчитать стоимость
+                </a>
+            </div>
+            <button class="header__burger" id="burgerBtn" aria-label="Открыть меню" onclick="toggleMobileNav()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav__inner">
+        <button class="mobile-nav__close" onclick="closeMobileNav()" aria-label="Закрыть меню">✕</button>
+        <nav>
+            <a href="#quiz"     class="mobile-nav__link" onclick="closeMobileNav();trackEvent('nav_click',{link:'quiz'})">Расчёт стоимости</a>
+            <a href="#cases"    class="mobile-nav__link" onclick="closeMobileNav();trackEvent('nav_click',{link:'cases'})">Объекты</a>
+            <a href="#prices"   class="mobile-nav__link" onclick="closeMobileNav();trackEvent('nav_click',{link:'prices'})">Цены</a>
+            <a href="#trust"    class="mobile-nav__link" onclick="closeMobileNav();trackEvent('nav_click',{link:'trust'})">Гарантии</a>
+            <a href="#faq"      class="mobile-nav__link" onclick="closeMobileNav();trackEvent('nav_click',{link:'faq'})">FAQ</a>
+            <a href="#contacts" class="mobile-nav__link" onclick="closeMobileNav();trackEvent('nav_click',{link:'contacts'})">Контакты</a>
+        </nav>
+        <div class="mobile-nav__footer">
+            <a href="tel:+77775127772" class="mobile-nav__phone" onclick="trackEvent('phone_click',{location:'mobile_nav'})">
+                +7 777 512 7772
+            </a>
+            <a href="#quiz" class="btn btn--primary btn--full" onclick="closeMobileNav();trackEvent('hero_cta_click',{location:'mobile_nav'})">
+                Рассчитать стоимость
+            </a>
+        </div>
+    </div>
+</div>
+<div class="mobile-nav__overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
+
+<section class="hero" id="hero">
+    <div class="container">
+        <div class="hero__inner">
+            <div class="hero__content">
+                <div class="hero__badge">
+                    <span class="badge__dot"></span>
+                    Алматы · 10+ лет на рынке
+                </div>
+                <h1 class="hero__title">
+                    Ремонт квартиры в Алматы<br>
+                    <span class="text-accent">с понятной сметой</span><br>
+                    до начала работ
+                </h1>
+                <p class="hero__subtitle">
+                    Ответьте на 6 вопросов и получите предварительную вилку стоимости:
+                    работы, материалы, сроки и возможные скрытые расходы.
+                </p>
+                <div class="hero__actions">
+                    <a href="#quiz" class="btn btn--primary btn--lg"
+                       onclick="trackEvent('hero_cta_click',{location:'hero'})">
+                        Рассчитать стоимость
+                    </a>
+                    <a href="#cases" class="btn btn--ghost btn--lg"
+                       onclick="trackEvent('secondary_cta_click',{location:'hero'})">
+                        Посмотреть объекты
+                    </a>
+                </div>
+                <p class="hero__microcopy">Без спама. Расчёт отправим в WhatsApp.</p>
+
+                <div class="hero__stats">
+                    <div class="stat">
+                        <span class="stat__num">10+</span>
+                        <span class="stat__label">лет на рынке</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__num">500+</span>
+                        <span class="stat__label">объектов сдано</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__num">3 года</span>
+                        <span class="stat__label">гарантия работ</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__num">24 ч</span>
+                        <span class="stat__label">смета после замера</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero__visual">
+                <div class="real-photo rp--hero">
+                    <img src="images/hero-kitchen.webp"
+                         alt="Кухня-гостиная после ремонта в Алматы"
+                         loading="eager">
+                </div>
+
+                <div class="hero__insight-card">
+                    <div class="insight-card__emoji">💡</div>
+                    <p>Чаще всего бюджет растёт не из-за материалов, а из-за плохо составленной сметы. <strong>Мы показываем вилку заранее.</strong></p>
+                </div>
+
+                <div class="hero__object-badge">
+                    <span class="object-badge__tag">Объект сдан</span>
+                    <span class="object-badge__info">42 м² · 38 дней</span>
+                    <span class="object-badge__status">✓ Бюджет согласован до старта</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pain" id="pain">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Почему ремонт почти всегда выходит дороже, чем ожидали?</h2>
+            <p class="section-sub">Не потому что все врут. Просто есть несколько моментов, которые теряются в первых расчётах.</p>
+        </div>
+        <div class="pain__grid">
+            <div class="pain-card">
+                <div class="pain-card__icon">🔨</div>
+                <h3 class="pain-card__title">Не учли демонтаж</h3>
+                <p class="pain-card__text">Старые покрытия, стены и коммуникации часто дают дополнительные работы, которые не были видны в первой смете.</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-card__icon">⚡</div>
+                <h3 class="pain-card__title">Забыли про электрику</h3>
+                <p class="pain-card__text">Розетки, щиток, группы света и техника сильно влияют на бюджет — и это легко потерять в первой смете.</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-card__icon">🧱</div>
+                <h3 class="pain-card__title">Не посчитали черновые материалы</h3>
+                <p class="pain-card__text">Штукатурка, стяжка, смеси и доставка часто выпадают из расчёта — и потом удивляют в середине ремонта.</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-card__icon">📄</div>
+                <h3 class="pain-card__title">Нет письменной фиксации</h3>
+                <p class="pain-card__text">Когда изменения не согласованы письменно, в середине ремонта начинаются споры о том, кто что говорил.</p>
+            </div>
+        </div>
+        <div class="pain__cta">
+            <a href="#quiz" class="btn btn--primary"
+               onclick="trackEvent('hero_cta_click',{location:'pain_block'})">
+                Проверить мой бюджет
+            </a>
+            <p class="microcopy">Лучше узнать вилку сейчас, чем удивляться после демонтажа.</p>
+        </div>
+    </div>
+</section>
+
+<section class="quiz-section" id="quiz">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Рассчитайте предварительную стоимость ремонта</h2>
+            <p class="section-sub">6 вопросов — и мы покажем, какие параметры сильнее всего влияют на бюджет.</p>
+        </div>
+
+        <div class="quiz" id="quizWidget">
+
+            
+            <div class="quiz__progress-wrap">
+                <div class="quiz__progress-track">
+                    <div class="quiz__progress-fill" id="quizProgressFill" style="width:16.6%"></div>
+                </div>
+                <span class="quiz__progress-label" id="quizProgressLabel">Шаг 1 из 6</span>
+            </div>
+
+            
+            <div class="quiz__step active" id="quizStep1" data-step="1">
+                <h3 class="quiz__question">Какой у вас объект?</h3>
+                <div class="quiz__hint"><span>💬</span> Вторичка часто требует больше демонтажа и проверки коммуникаций.</div>
+                <div class="quiz__options quiz__options--grid">
+                    <button class="quiz__option" data-field="objectType" data-value="Квартира в новостройке" onclick="selectOption(this,1)">
+                        <span class="qopt__icon">🏢</span>
+                        <span class="qopt__label">Квартира в новостройке</span>
+                    </button>
+                    <button class="quiz__option" data-field="objectType" data-value="Вторичка" onclick="selectOption(this,1)">
+                        <span class="qopt__icon">🏠</span>
+                        <span class="qopt__label">Вторичка</span>
+                    </button>
+                    <button class="quiz__option" data-field="objectType" data-value="Частный дом" onclick="selectOption(this,1)">
+                        <span class="qopt__icon">🏡</span>
+                        <span class="qopt__label">Частный дом</span>
+                    </button>
+                    <button class="quiz__option" data-field="objectType" data-value="Коммерческое помещение" onclick="selectOption(this,1)">
+                        <span class="qopt__icon">🏪</span>
+                        <span class="qopt__label">Коммерческое помещение</span>
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="quiz__step" id="quizStep2" data-step="2">
+                <h3 class="quiz__question">Какая площадь?</h3>
+                <div class="quiz__hint"><span>💬</span> Чем больше площадь, тем точнее можно рассчитать стоимость за м².</div>
+                <div class="quiz__options quiz__options--grid">
+                    <button class="quiz__option" data-field="area" data-value="До 40 м²" onclick="selectOption(this,2)">
+                        <span class="qopt__icon">📐</span>
+                        <span class="qopt__label">До 40 м²</span>
+                    </button>
+                    <button class="quiz__option" data-field="area" data-value="40–70 м²" onclick="selectOption(this,2)">
+                        <span class="qopt__icon">📐</span>
+                        <span class="qopt__label">40–70 м²</span>
+                    </button>
+                    <button class="quiz__option" data-field="area" data-value="70–100 м²" onclick="selectOption(this,2)">
+                        <span class="qopt__icon">📐</span>
+                        <span class="qopt__label">70–100 м²</span>
+                    </button>
+                    <button class="quiz__option" data-field="area" data-value="100+ м²" onclick="selectOption(this,2)">
+                        <span class="qopt__icon">📐</span>
+                        <span class="qopt__label">100+ м²</span>
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="quiz__step" id="quizStep3" data-step="3">
+                <h3 class="quiz__question">Какой ремонт нужен?</h3>
+                <div class="quiz__hint"><span>💬</span> Если не знаете — ничего страшного. Мы поможем определить по состоянию объекта.</div>
+                <div class="quiz__options quiz__options--grid">
+                    <button class="quiz__option" data-field="repairType" data-value="Косметический" onclick="selectOption(this,3)">
+                        <span class="qopt__icon">🎨</span>
+                        <span class="qopt__label">Косметический</span>
+                    </button>
+                    <button class="quiz__option" data-field="repairType" data-value="Капитальный" onclick="selectOption(this,3)">
+                        <span class="qopt__icon">🔧</span>
+                        <span class="qopt__label">Капитальный</span>
+                    </button>
+                    <button class="quiz__option" data-field="repairType" data-value="Евроремонт" onclick="selectOption(this,3)">
+                        <span class="qopt__icon">✨</span>
+                        <span class="qopt__label">Евроремонт</span>
+                    </button>
+                    <button class="quiz__option" data-field="repairType" data-value="Премиум" onclick="selectOption(this,3)">
+                        <span class="qopt__icon">👑</span>
+                        <span class="qopt__label">Премиум</span>
+                    </button>
+                    <button class="quiz__option" data-field="repairType" data-value="Пока не знаю" onclick="selectOption(this,3)">
+                        <span class="qopt__icon">🤔</span>
+                        <span class="qopt__label">Пока не знаю</span>
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="quiz__step" id="quizStep4" data-step="4">
+                <h3 class="quiz__question">Что нужно включить?</h3>
+                <div class="quiz__hint"><span>💬</span> Материалы часто дают большой разброс, поэтому лучше считать несколько вариантов.</div>
+                <div class="quiz__options quiz__options--grid">
+                    <button class="quiz__option" data-field="packageType" data-value="Только работы" onclick="selectOption(this,4)">
+                        <span class="qopt__icon">👷</span>
+                        <span class="qopt__label">Только работы</span>
+                    </button>
+                    <button class="quiz__option" data-field="packageType" data-value="Работы + материалы" onclick="selectOption(this,4)">
+                        <span class="qopt__icon">🧰</span>
+                        <span class="qopt__label">Работы + материалы</span>
+                    </button>
+                    <button class="quiz__option" data-field="packageType" data-value="Ремонт под ключ" onclick="selectOption(this,4)">
+                        <span class="qopt__icon">🔑</span>
+                        <span class="qopt__label">Ремонт под ключ</span>
+                    </button>
+                    <button class="quiz__option" data-field="packageType" data-value="Ремонт + дизайн-проект" onclick="selectOption(this,4)">
+                        <span class="qopt__icon">📋</span>
+                        <span class="qopt__label">Ремонт + дизайн-проект</span>
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="quiz__step" id="quizStep5" data-step="5">
+                <h3 class="quiz__question">Когда хотите начать?</h3>
+                <div class="quiz__hint"><span>💬</span> Если вы пока просто считаете бюджет — это нормально.</div>
+                <div class="quiz__options quiz__options--grid">
+                    <button class="quiz__option" data-field="startTime" data-value="Срочно" onclick="selectOption(this,5)">
+                        <span class="qopt__icon">🚀</span>
+                        <span class="qopt__label">Срочно</span>
+                    </button>
+                    <button class="quiz__option" data-field="startTime" data-value="В течение месяца" onclick="selectOption(this,5)">
+                        <span class="qopt__icon">📅</span>
+                        <span class="qopt__label">В течение месяца</span>
+                    </button>
+                    <button class="quiz__option" data-field="startTime" data-value="Через 2–3 месяца" onclick="selectOption(this,5)">
+                        <span class="qopt__icon">🗓️</span>
+                        <span class="qopt__label">Через 2–3 месяца</span>
+                    </button>
+                    <button class="quiz__option" data-field="startTime" data-value="Пока просто считаю бюджет" onclick="selectOption(this,5)">
+                        <span class="qopt__icon">🧮</span>
+                        <span class="qopt__label">Пока просто считаю бюджет</span>
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="quiz__step" id="quizStep6" data-step="6">
+                <h3 class="quiz__question">Что для вас важнее всего?</h3>
+                <div class="quiz__hint"><span>💬</span> Это поможет понять, на чём делать акцент в расчёте.</div>
+                <div class="quiz__options quiz__options--grid">
+                    <button class="quiz__option" data-field="priority" data-value="Не выйти за бюджет" onclick="selectOption(this,6)">
+                        <span class="qopt__icon">💰</span>
+                        <span class="qopt__label">Не выйти за бюджет</span>
+                    </button>
+                    <button class="quiz__option" data-field="priority" data-value="Сделать быстро" onclick="selectOption(this,6)">
+                        <span class="qopt__icon">⚡</span>
+                        <span class="qopt__label">Сделать быстро</span>
+                    </button>
+                    <button class="quiz__option" data-field="priority" data-value="Максимальное качество" onclick="selectOption(this,6)">
+                        <span class="qopt__icon">⭐</span>
+                        <span class="qopt__label">Максимальное качество</span>
+                    </button>
+                    <button class="quiz__option" data-field="priority" data-value="Минимум моего участия" onclick="selectOption(this,6)">
+                        <span class="qopt__icon">😌</span>
+                        <span class="qopt__label">Минимум моего участия</span>
+                    </button>
+                    <button class="quiz__option" data-field="priority" data-value="Понятная смета" onclick="selectOption(this,6)">
+                        <span class="qopt__icon">📑</span>
+                        <span class="qopt__label">Понятная смета</span>
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="quiz__step" id="quizSummary">
+                <div class="quiz__summary-screen">
+                    <div class="summary__header">
+                        <div class="summary__emoji">🎯</div>
+                        <h3>Ваш предварительный расчёт почти готов</h3>
+                        <p>По вашим ответам мы подготовим примерную вилку бюджета, сроки и список пунктов, которые могут повлиять на цену. Это поможет понять порядок расходов ещё до замера.</p>
+                    </div>
+                    <div class="summary__answers" id="summaryAnswers"></div>
+                    <button class="btn btn--primary btn--lg btn--full" onclick="showQuizForm()">
+                        Получить расчёт →
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="quiz__step" id="quizFormStep">
+                <h3 class="quiz__question">Куда отправить расчёт?</h3>
+                <p class="quiz__subtext">Не будем звонить 10 раз. Напишем по делу.</p>
+                <form class="quiz__lead-form" id="quizLeadForm" onsubmit="submitQuizForm(event)" novalidate>
+                    <div class="form-group">
+                        <label for="quizName">Ваше имя</label>
+                        <input type="text" id="quizName" name="name" placeholder="Как вас зовут?" autocomplete="name">
+                        <span class="form-error" id="quizNameError">Введите имя</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="quizPhone">WhatsApp / телефон</label>
+                        <input type="tel" id="quizPhone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+                        <span class="form-error" id="quizPhoneError">Введите корректный номер (минимум 10 цифр)</span>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--lg btn--full btn--wa-cta">
+                        Получить расчёт в WhatsApp
+                    </button>
+                    <p class="form-microcopy">Не будем звонить 10 раз. Напишем по делу.</p>
+                </form>
+            </div>
+
+            
+            <div class="quiz__step" id="quizSuccess">
+                <div class="quiz__success-screen">
+                    <div class="success__icon">✅</div>
+                    <h3>Заявка принята!</h3>
+                    <p>Мы подготовим расчёт и свяжемся с вами в WhatsApp в течение нескольких часов.</p>
+                    <a href="https://wa.me/77775127772?text=Здравствуйте,%20я%20заполнил%20форму%20расчёта%20на%20сайте"
+                       class="btn btn--wa btn--lg" target="_blank"
+                       onclick="trackEvent('whatsapp_click',{location:'quiz_success'})">
+                        Написать в WhatsApp
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="benefits" id="benefits">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Что вы получите после расчёта</h2>
+            <p class="section-sub">Мы не просто спрашиваем номер. Мы даём человеку понятный следующий шаг.</p>
+        </div>
+        <div class="benefits__grid">
+            <div class="benefit-card">
+                <div class="benefit-card__num">01</div>
+                <h3>Предварительная смета</h3>
+                <p>Понимание порядка бюджета ещё до замера — чтобы не было сюрпризов.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-card__num">02</div>
+                <h3>Вилка: эконом / стандарт / премиум</h3>
+                <p>Можно сравнить варианты и выбрать подходящий под бюджет и ожидания.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-card__num">03</div>
+                <h3>Список скрытых расходов</h3>
+                <p>Покажем, что может увеличить стоимость — демонтаж, коммуникации, доставка.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-card__num">04</div>
+                <h3>Оценка сроков</h3>
+                <p>Сориентируем по длительности ремонта в зависимости от объёма работ.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-card__num">05</div>
+                <h3>Рекомендации по экономии</h3>
+                <p>Где можно сократить бюджет, а где лучше не рисковать — честно и без давления.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="prices" id="prices">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Ориентиры по стоимости ремонта</h2>
+            <p class="section-sub">Это диапазоны, а не финальные цены. Точную стоимость можно назвать только после замера.</p>
+        </div>
+        <div class="prices__grid">
+            <div class="price-card" onclick="trackEvent('price_card_view',{type:'cosmetic'})">
+                <div class="price-card__head">
+                    <h3>Лёгкое обновление</h3>
+                    <div class="price-card__price">от 18 000 <span>тг/м²</span></div>
+                </div>
+                <p class="price-card__desc">Когда нужно освежить интерьер без сложных работ.</p>
+                <ul class="price-card__list">
+                    <li>Покраска стен, обои</li>
+                    <li>Замена напольного покрытия</li>
+                    <li>Мелкий косметический ремонт</li>
+                    <li>Без замены коммуникаций</li>
+                </ul>
+                <a href="#quiz" class="btn btn--outline btn--full"
+                   onclick="trackEvent('hero_cta_click',{location:'price_cosmetic'})">Рассчитать</a>
+            </div>
+
+            <div class="price-card price-card--featured" onclick="trackEvent('price_card_view',{type:'capital'})">
+                <div class="price-card__badge">Популярный</div>
+                <div class="price-card__head">
+                    <h3>Капитальный ремонт</h3>
+                    <div class="price-card__price">от 35 000 <span>тг/м²</span></div>
+                </div>
+                <p class="price-card__desc">Замена коммуникаций, черновые и чистовые работы.</p>
+                <ul class="price-card__list">
+                    <li>Демонтаж и черновые работы</li>
+                    <li>Замена электрики и сантехники</li>
+                    <li>Полная чистовая отделка</li>
+                    <li>Поэтапный контроль</li>
+                </ul>
+                <a href="#quiz" class="btn btn--primary btn--full"
+                   onclick="trackEvent('hero_cta_click',{location:'price_capital'})">Рассчитать</a>
+            </div>
+
+            <div class="price-card" onclick="trackEvent('price_card_view',{type:'euro'})">
+                <div class="price-card__head">
+                    <h3>Евроремонт</h3>
+                    <div class="price-card__price">от 50 000 <span>тг/м²</span></div>
+                </div>
+                <p class="price-card__desc">Более сложная отделка, качественные материалы и детальная проработка.</p>
+                <ul class="price-card__list">
+                    <li>Всё из капитального + материалы</li>
+                    <li>Сложные покрытия и отделка</li>
+                    <li>Повышенный контроль качества</li>
+                    <li>Расширенная гарантия</li>
+                </ul>
+                <a href="#quiz" class="btn btn--outline btn--full"
+                   onclick="trackEvent('hero_cta_click',{location:'price_euro'})">Рассчитать</a>
+            </div>
+
+            <div class="price-card" onclick="trackEvent('price_card_view',{type:'premium'})">
+                <div class="price-card__head">
+                    <h3>Премиум</h3>
+                    <div class="price-card__price">от 80 000 <span>тг/м²</span></div>
+                </div>
+                <p class="price-card__desc">Индивидуальные решения, сложные материалы, высокий уровень контроля.</p>
+                <ul class="price-card__list">
+                    <li>Дизайн-проект и авторский надзор</li>
+                    <li>Нестандартные материалы</li>
+                    <li>Детальная проработка деталей</li>
+                    <li>Персональный менеджер</li>
+                </ul>
+                <a href="#quiz" class="btn btn--outline btn--full"
+                   onclick="trackEvent('hero_cta_click',{location:'price_premium'})">Рассчитать</a>
+            </div>
+        </div>
+        <div class="prices__disclaimer">
+            <p>Точная стоимость зависит от состояния объекта, материалов, площади и объёма работ.
+            Честную финальную цену можно назвать только после уточнения деталей и замера.</p>
+        </div>
+        <div class="prices__cta">
+            <a href="#quiz" class="btn btn--primary"
+               onclick="trackEvent('hero_cta_click',{location:'prices_section'})">
+                Рассчитать мой вариант
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="cases" id="cases">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Объекты, где уже прошли через пыль, смету и дедлайны</h2>
+            <p class="section-sub">Реальные цифры и реальные ситуации — без глянца и фотошопа.</p>
+        </div>
+        <div class="cases__grid">
+
+            
+            <article class="case-card" onclick="trackEvent('case_view',{case:'1room_40m'})">
+                <div class="real-photo rp--case">
+                    <img src="images/case-40-after.png"
+                         alt="1-комнатная квартира 40 м² после ремонта"
+                         loading="lazy">
+                    <span class="rp__tag">После ремонта · 40 м²</span>
+                </div>
+                <div class="case-card__body">
+                    <h3>1-комнатная квартира, 40 м²</h3>
+                    <div class="case-card__metrics">
+                        <div class="metric">
+                            <span class="metric__key">Срок</span>
+                            <span class="metric__val">35 рабочих дней</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric__key">Бюджет</span>
+                            <span class="metric__val">от 1,4 млн тг</span>
+                        </div>
+                    </div>
+                    <div class="case-card__task">
+                        <span class="label--task">Задача</span>
+                        <p>Нужно было быстро подготовить квартиру к заселению.</p>
+                    </div>
+                    <div class="case-card__result">
+                        <span class="label--result">Решение</span>
+                        <p>Сделали базовый ремонт с понятной сметой и поэтапной оплатой.</p>
+                    </div>
+                    <a href="#quiz" class="btn btn--outline btn--sm btn--full"
+                       onclick="trackEvent('hero_cta_click',{location:'case_1'})">Хочу похожий расчёт</a>
+                </div>
+            </article>
+
+            
+            <article class="case-card" onclick="trackEvent('case_view',{case:'2room_60m'})">
+                <div class="real-photo rp--case">
+                    <img src="images/case-60-after.png"
+                         alt="2-комнатная квартира 60 м² после ремонта"
+                         loading="lazy">
+                    <span class="rp__tag">После ремонта · 60 м²</span>
+                </div>
+                <div class="case-card__body">
+                    <h3>2-комнатная квартира, 60 м²</h3>
+                    <div class="case-card__metrics">
+                        <div class="metric">
+                            <span class="metric__key">Срок</span>
+                            <span class="metric__val">55 рабочих дней</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric__key">Бюджет</span>
+                            <span class="metric__val">от 2,7 млн тг</span>
+                        </div>
+                    </div>
+                    <div class="case-card__task">
+                        <span class="label--task">Задача</span>
+                        <p>Были вопросы по электрике и планировке.</p>
+                    </div>
+                    <div class="case-card__result">
+                        <span class="label--result">Решение</span>
+                        <p>Разделили работы на этапы и согласовали бюджет до старта.</p>
+                    </div>
+                    <a href="#quiz" class="btn btn--outline btn--sm btn--full"
+                       onclick="trackEvent('hero_cta_click',{location:'case_2'})">Хочу похожий расчёт</a>
+                </div>
+            </article>
+
+            
+            <article class="case-card" onclick="trackEvent('case_view',{case:'3room_90m'})">
+                <div class="real-photo rp--case">
+                    <img src="images/case-90-after.png"
+                         alt="3-комнатная квартира 90 м² после ремонта"
+                         loading="lazy">
+                    <span class="rp__tag">После ремонта · 90 м²</span>
+                </div>
+                <div class="case-card__body">
+                    <h3>3-комнатная квартира, 90 м²</h3>
+                    <div class="case-card__metrics">
+                        <div class="metric">
+                            <span class="metric__key">Срок</span>
+                            <span class="metric__val">75 рабочих дней</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric__key">Бюджет</span>
+                            <span class="metric__val">от 4,5 млн тг</span>
+                        </div>
+                    </div>
+                    <div class="case-card__task">
+                        <span class="label--task">Задача</span>
+                        <p>Большой объём работ и несколько зон отделки.</p>
+                    </div>
+                    <div class="case-card__result">
+                        <span class="label--result">Решение</span>
+                        <p>Собрали понятный график работ и поэтапный контроль.</p>
+                    </div>
+                    <a href="#quiz" class="btn btn--outline btn--sm btn--full"
+                       onclick="trackEvent('hero_cta_click',{location:'case_3'})">Хочу похожий расчёт</a>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<section class="estimate" id="estimate">
+    <div class="container">
+        <div class="estimate__inner">
+            <div class="estimate__content">
+                <h2 class="section-title">Смета без магии: из чего складывается стоимость</h2>
+                <p class="section-sub">Точную цену без объекта никто честно не скажет. Но можно заранее показать диапазон и объяснить, что влияет на бюджет.</p>
+                <div class="estimate__list">
+                    <div class="est-item">
+                        <span class="est-item__icon">🔨</span>
+                        <div>
+                            <strong>Демонтаж</strong>
+                            <span>Снятие старых покрытий, перегородок, коммуникаций</span>
+                        </div>
+                    </div>
+                    <div class="est-item">
+                        <span class="est-item__icon">🧱</span>
+                        <div>
+                            <strong>Черновые работы</strong>
+                            <span>Штукатурка, стяжка, выравнивание поверхностей</span>
+                        </div>
+                    </div>
+                    <div class="est-item">
+                        <span class="est-item__icon">⚡</span>
+                        <div>
+                            <strong>Электрика</strong>
+                            <span>Щиток, разводка, розетки, освещение</span>
+                        </div>
+                    </div>
+                    <div class="est-item">
+                        <span class="est-item__icon">🚿</span>
+                        <div>
+                            <strong>Сантехника</strong>
+                            <span>Трубы, разводка, установка сантехники</span>
+                        </div>
+                    </div>
+                    <div class="est-item">
+                        <span class="est-item__icon">✨</span>
+                        <div>
+                            <strong>Чистовые материалы</strong>
+                            <span>Плитка, напольное покрытие, обои, краска</span>
+                        </div>
+                    </div>
+                    <div class="est-item">
+                        <span class="est-item__icon">👷</span>
+                        <div>
+                            <strong>Работа мастеров</strong>
+                            <span>Все виды отделочных и монтажных работ</span>
+                        </div>
+                    </div>
+                    <div class="est-item">
+                        <span class="est-item__icon">🚛</span>
+                        <div>
+                            <strong>Доставка и вывоз мусора</strong>
+                            <span>Транспортировка материалов, вывоз строительного мусора</span>
+                        </div>
+                    </div>
+                    <div class="est-item est-item--warning">
+                        <span class="est-item__icon">⚠️</span>
+                        <div>
+                            <strong>Непредвиденные моменты</strong>
+                            <span>Скрытые проблемы, которые могут обнаружиться в процессе</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="#quiz" class="btn btn--primary"
+                   onclick="trackEvent('hero_cta_click',{location:'estimate_block'})">
+                    Понять мой бюджет
+                </a>
+            </div>
+
+            <div class="estimate__doc">
+                <div class="ph--doc">
+                    <div class="ph-doc__header">
+                        <div class="ph-doc__logo">RP</div>
+                        <div>
+                            <div class="ph-doc__title">Предварительная смета</div>
+                            <div class="ph-doc__sub">Квартира 60 м² · Капитальный</div>
+                        </div>
+                    </div>
+                    <div class="ph-doc__rows">
+                        <div class="ph-doc__row"><span>Демонтаж</span><span>150 000 тг</span></div>
+                        <div class="ph-doc__row"><span>Черновые работы</span><span>380 000 тг</span></div>
+                        <div class="ph-doc__row"><span>Электрика</span><span>220 000 тг</span></div>
+                        <div class="ph-doc__row"><span>Сантехника</span><span>180 000 тг</span></div>
+                        <div class="ph-doc__row"><span>Чистовые работы</span><span>620 000 тг</span></div>
+                        <div class="ph-doc__row ph-doc__row--total"><span>Итого от</span><span>1 550 000 тг</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="process" id="process">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Ремонт по этапам, чтобы было понятно, что происходит</h2>
+            <p class="section-sub">На каждом этапе понятно, кто отвечает, что происходит и когда следующий шаг.</p>
+        </div>
+        <div class="process__track">
+            <div class="process-step">
+                <div class="process-step__num">1</div>
+                <div class="process-step__body">
+                    <h3>Вы проходите квиз</h3>
+                    <p>6 вопросов за 2 минуты — и мы понимаем ваш объект и задачи.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step__num">2</div>
+                <div class="process-step__body">
+                    <h3>Мы уточняем детали</h3>
+                    <p>Связываемся в WhatsApp, уточняем нюансы и договариваемся о замере.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step__num">3</div>
+                <div class="process-step__body">
+                    <h3>Готовим предварительную смету</h3>
+                    <p>Показываем вилку бюджета с разбивкой по статьям расходов.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step__num">4</div>
+                <div class="process-step__body">
+                    <h3>Делаем замер</h3>
+                    <p>Выезжаем на объект, смотрим реальное состояние и уточняем смету.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step__num">5</div>
+                <div class="process-step__body">
+                    <h3>Фиксируем смету и договор</h3>
+                    <p>Все условия, работы и цены — письменно. Без устных договорённостей.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step__num">6</div>
+                <div class="process-step__body">
+                    <h3>Выполняем ремонт по этапам</h3>
+                    <p>Фото и видеоотчёты. Оплата по этапам. Вы понимаете, что происходит.</p>
+                </div>
+            </div>
+            <div class="process-step process-step--last">
+                <div class="process-step__num">7</div>
+                <div class="process-step__body">
+                    <h3>Сдаём объект и даём гарантию</h3>
+                    <p>Принимаете работу, подписываете акт. Гарантия до 3 лет.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="trust" id="trust">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Что мы делаем, чтобы ремонт не превратился в стресс</h2>
+        </div>
+        <div class="trust__grid">
+            <div class="trust-card">
+                <div class="trust-card__icon">📜</div>
+                <h3>Цена фиксируется в договоре</h3>
+                <p>Все основные работы и условия прописываются заранее — без устных договорённостей.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card__icon">💳</div>
+                <h3>Оплата по этапам</h3>
+                <p>Клиент понимает, за что платит на каждом этапе — без авансов на всё сразу.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card__icon">📸</div>
+                <h3>Фото и видеоотчёты</h3>
+                <p>Можно контролировать процесс через WhatsApp без лишних звонков и визитов.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card__icon">🛡️</div>
+                <h3>Гарантия до 3 лет</h3>
+                <p>Гарантийные условия фиксируются письменно и действуют после сдачи объекта.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card__icon">⏱️</div>
+                <h3>Смета за 24 часа</h3>
+                <p>После уточнения деталей можно быстро получить ориентир по бюджету.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card__icon">📍</div>
+                <h3>Работаем по Алматы</h3>
+                <p>Берём объекты в разных районах города — от центра до пригорода.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="savings" id="savings">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Где можно сэкономить, а где лучше не рисковать</h2>
+            <p class="section-sub">Экономия в ремонте нормальна. Проблема начинается, когда экономят на том, что потом дорого переделывать.</p>
+        </div>
+        <div class="savings__cols">
+            <div class="savings-col savings-col--yes">
+                <div class="savings-col__head">
+                    <span class="savings-col__icon">✅</span>
+                    <h3>Можно экономить</h3>
+                </div>
+                <ul class="savings-list">
+                    <li>
+                        <span>🪴</span>
+                        <div>
+                            <strong>Декоративные элементы</strong>
+                            <p>Лепнина, декор, нестандартные решения — без них интерьер тоже выглядит хорошо.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>🎨</span>
+                        <div>
+                            <strong>Часть чистовых материалов</strong>
+                            <p>Можно выбрать аналоги хорошего качества по разумной цене.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>🛋️</span>
+                        <div>
+                            <strong>Мебель на первом этапе</strong>
+                            <p>Можно заселиться с минимумом и дополнить позже.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>🖼️</span>
+                        <div>
+                            <strong>Сложные дизайнерские решения</strong>
+                            <p>Арки, ниши, акцентные стены — можно сделать позже или упростить.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="savings-col savings-col--no">
+                <div class="savings-col__head">
+                    <span class="savings-col__icon">⚠️</span>
+                    <h3>Лучше не экономить</h3>
+                </div>
+                <ul class="savings-list">
+                    <li>
+                        <span>⚡</span>
+                        <div>
+                            <strong>Электрика</strong>
+                            <p>Плохая разводка — это не просто неудобство. Это риск замыканий и переделки через год.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>🚿</span>
+                        <div>
+                            <strong>Сантехника</strong>
+                            <p>Протечка потребует ремонта не только у вас, но и у соседей снизу.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>💧</span>
+                        <div>
+                            <strong>Гидроизоляция</strong>
+                            <p>В ванной и на балконе — без неё вся работа может пойти насмарку.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>🧱</span>
+                        <div>
+                            <strong>Черновые работы</strong>
+                            <p>На кривых основаниях даже дорогая плитка смотрится плохо и держится недолго.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>👷</span>
+                        <div>
+                            <strong>Нормальные мастера</strong>
+                            <p>Дешёвая бригада может обойтись дороже переделки, чем хорошие мастера с первого раза.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="savings__cta">
+            <a href="#quiz" class="btn btn--primary"
+               onclick="trackEvent('hero_cta_click',{location:'savings_block'})">
+                Получить рекомендации по бюджету
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="reviews" id="reviews">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Отзывы, которые не выглядят как рекламный текст</h2>
+            <p class="section-sub">Реальные отзывы с текущего сайта компании — без фейковых скринов и выдуманных аватарок.</p>
+        </div>
+        <div class="reviews__grid">
+
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar review-avatar--m">М</div>
+                    <div class="review-info">
+                        <div class="review-name">Молдир</div>
+                        <div class="review-meta">Клиент RemontProfi</div>
+                    </div>
+                </div>
+                <p class="review-text">«Спасибо команде строителей за быструю и чистую работу. Вся работа от начала до конца была сделана в точные сроки. Все условия мы обсудили при первой же встрече, не было никаких подводных камней.»</p>
+            </div>
+
+            
+            <div class="review-card review-card--featured">
+                <div class="review-header">
+                    <div class="review-avatar review-avatar--k">К</div>
+                    <div class="review-info">
+                        <div class="review-name">Канат</div>
+                        <div class="review-meta">Алмалинский район, ремонт квартиры под ключ, 3-комнатная 95 м²</div>
+                    </div>
+                </div>
+                <p class="review-text">«Делали капитальный ремонт во вторичке на Сейфуллина, нужна была перепланировка — объединили кухню с гостиной. Remont-Profi помогли согласовать всё в Управлении архитектуры, параллельно начали демонтаж. Сам ремонт занял 71 рабочий день. Сумма работ — 3 420 000 тг, с материалами — 6 900 000 тг, копейка в копейку как в договоре. Особенно подкупило, что когда нашли скрытое плесневое пятно за гипсокартоном, обработали антисептиком и поменяли участок за свой счёт, потому что это была зона ответственности по договору. Рекомендую.»</p>
+            </div>
+
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar review-avatar--a">А</div>
+                    <div class="review-info">
+                        <div class="review-name">Аслан</div>
+                        <div class="review-meta">Клиент RemontProfi</div>
+                    </div>
+                </div>
+                <p class="review-text">«Вы сделали всё даже лучше, чем мы представляли себе. Ребята помогли доработать наш дизайн-проект и уложить всё по местам.»</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="team" id="team">
+    <div class="container">
+        <div class="team__inner">
+            <h2 class="team__title">Ремонт делают люди, а не просто бригада из объявления</h2>
+            <p class="team__text">Мы не обещаем ремонт «без шума и пыли». Ремонт — это всегда процесс.
+            Наша задача — сделать его понятным: по бюджету, срокам, этапам и ответственности.</p>
+            <p class="team__text">За каждым объектом стоит конкретный прораб, который отвечает за качество и сроки.
+            Не просто «компания», а живые люди, которые понимают, что ремонт — это стресс,
+            и стараются его снизить.</p>
+            <blockquote class="team__quote">
+                «Лучший ремонт — тот, где клиент понимает, что происходит.»
+            </blockquote>
+            <div class="team__cta">
+                <a href="https://wa.me/77775127772?text=Здравствуйте,%20хочу%20обсудить%20ремонт"
+                   class="btn btn--wa" target="_blank"
+                   onclick="trackEvent('whatsapp_click',{location:'team_block'})">
+                    Познакомиться и обсудить задачу
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq" id="faq">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Клиенты часто спрашивают — отвечаем честными словами</h2>
+        </div>
+        <div class="faq__list">
+            <div class="faq-item" onclick="toggleFaq(this);trackEvent('faq_open',{q:'price_without_measure'})">
+                <div class="faq-item__q"><span>Можно ли узнать цену без замера?</span><span class="faq-item__arr">+</span></div>
+                <div class="faq-item__a">Можно узнать предварительный диапазон. Точная стоимость зависит от объекта, материалов и состояния коммуникаций. Пройдите квиз — и мы покажем ориентировочную вилку.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this);trackEvent('faq_open',{q:'price_may_grow'})">
+                <div class="faq-item__q"><span>Цена может вырасти в процессе?</span><span class="faq-item__arr">+</span></div>
+                <div class="faq-item__a">Если появляются дополнительные работы — они согласовываются отдельно, до начала. Основные условия фиксируются в смете и договоре. Мы не добавляем работы без вашего согласия.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this);trackEvent('faq_open',{q:'just_counting'})">
+                <div class="faq-item__q"><span>Можно просто посчитать бюджет, если я пока не готов начинать?</span><span class="faq-item__arr">+</span></div>
+                <div class="faq-item__a">Да. Многие сначала считают бюджет, чтобы понять, когда и с чего начинать. Если вы пока просто считаете — это нормально. Звонить 10 раз не будем.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this);trackEvent('faq_open',{q:'whatsapp_only'})">
+                <div class="faq-item__q"><span>Можно общаться только в WhatsApp?</span><span class="faq-item__arr">+</span></div>
+                <div class="faq-item__a">Да. Расчёт, уточнения и большая часть коммуникации по объекту — через WhatsApp. Удобно и без лишних звонков.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this);trackEvent('faq_open',{q:'contract'})">
+                <div class="faq-item__q"><span>Вы работаете по договору?</span><span class="faq-item__arr">+</span></div>
+                <div class="faq-item__a">Да. Договор и смета помогают зафиксировать объём работ, стоимость и условия. Это защищает обе стороны от недопонимания.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this);trackEvent('faq_open',{q:'turnkey'})">
+                <div class="faq-item__q"><span>Что входит в ремонт под ключ?</span><span class="faq-item__arr">+</span></div>
+                <div class="faq-item__a">Обычно это черновые и чистовые работы, замена коммуникаций, отделка и поэтапный контроль. Точный состав зависит от выбранного пакета и согласовывается индивидуально.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this);trackEvent('faq_open',{q:'own_materials'})">
+                <div class="faq-item__q"><span>Можно ли купить материалы самостоятельно?</span><span class="faq-item__arr">+</span></div>
+                <div class="faq-item__a">Да, но важно заранее согласовать с нами — чтобы материалы подходили по качеству, срокам и совместимости с другими работами.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="final-cta" id="contacts">
+    <div class="container">
+        <div class="final-cta__inner">
+            <div class="final-cta__text">
+                <h2>Хотите понять реальный бюджет ремонта до начала работ?</h2>
+                <p>Ответьте на несколько вопросов — мы подготовим предварительный расчёт и отправим его в WhatsApp.</p>
+                <a href="#quiz" class="btn btn--primary btn--lg"
+                   onclick="trackEvent('final_cta_click',{location:'final_cta'})">
+                    Рассчитать стоимость
+                </a>
+                <p class="microcopy">Это бесплатно и ни к чему не обязывает.</p>
+            </div>
+            <div class="final-cta__form">
+                <div class="form-card">
+                    <h3>Или оставьте номер — мы напишем сами</h3>
+                    <form id="finalCtaForm" onsubmit="submitFinalForm(event)" novalidate>
+                        <div class="form-group">
+                            <input type="text" id="ctaName" name="name" placeholder="Ваше имя" autocomplete="name">
+                            <span class="form-error" id="ctaNameError">Введите имя</span>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="ctaPhone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+                            <span class="form-error" id="ctaPhoneError">Введите корректный номер</span>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full">
+                            Получить смету в WhatsApp
+                        </button>
+                        <p class="form-microcopy">Не будем звонить 10 раз. Напишем по делу.</p>
+                    </form>
+                    <div class="form-success" id="finalFormSuccess" style="display:none">
+                        <div class="success__icon">✅</div>
+                        <p>Заявка принята. Напишем в WhatsApp.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="footer__top">
+            <div class="footer__col footer__col--brand">
+                <a href="#" class="footer__logo">
+                    <span class="logo__mark">R</span>
+                    <span class="logo__text">Remont<strong>Profi</strong></span>
+                </a>
+                <p class="footer__tagline">Ремонт квартир и домов в Алматы с понятной сметой и гарантией до 3 лет.</p>
+                <div class="footer__contacts">
+                    <a href="tel:+77775127772" class="footer__link" onclick="trackEvent('phone_click',{location:'footer'})">
+                        +7 777 512 7772
+                    </a>
+                    <a href="https://wa.me/77775127772" class="footer__link footer__wa" target="_blank"
+                       onclick="trackEvent('whatsapp_click',{location:'footer'})">
+                        WhatsApp
+                    </a>
+                </div>
+                <p class="footer__schedule">Пн–Вс: 9:00 – 20:00 · Алматы</p>
+            </div>
+            <div class="footer__col">
+                <h4>Услуги</h4>
+                <a href="#prices">Косметический ремонт</a>
+                <a href="#prices">Капитальный ремонт</a>
+                <a href="#prices">Евроремонт</a>
+                <a href="#prices">Ремонт под ключ</a>
+                <a href="#prices">Ремонт + дизайн</a>
+            </div>
+            <div class="footer__col">
+                <h4>О компании</h4>
+                <a href="#cases">Объекты</a>
+                <a href="#process">Этапы работы</a>
+                <a href="#trust">Гарантии</a>
+                <a href="#team">Команда</a>
+                <a href="#reviews">Отзывы</a>
+            </div>
+            <div class="footer__col">
+                <h4>Помощь</h4>
+                <a href="#quiz">Рассчитать стоимость</a>
+                <a href="#faq">Частые вопросы</a>
+                <a href="#estimate">Из чего складывается цена</a>
+                <a href="#savings">Как сэкономить</a>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__disclaimer">
+                Информация на сайте носит предварительный характер.
+                Точная стоимость зависит от объекта и объёма работ.
+            </p>
+            <p class="footer__copy">© 2024 RemontProfi · Алматы</p>
+        </div>
+    </div>
+</footer>
+
+<div class="chat-widget" id="chatWidget">
+    <div class="chat-window" id="chatWindow" style="display:none">
+        <div class="chat-win__header">
+            <div class="chat-avatar-wrap">
+                <div class="chat-avatar">RP</div>
+                <div>
+                    <div class="chat-name">Помощник по смете</div>
+                    <div class="chat-status">Отвечает на частые вопросы</div>
+                </div>
+            </div>
+            <button class="chat-close" onclick="closeChat()" aria-label="Закрыть">✕</button>
+        </div>
+        <div class="chat-win__messages" id="chatMessages"></div>
+        <div class="chat-win__quick-replies" id="chatQuickReplies">
+            <button class="chat-qr" onclick="chatQuickReply('calc')">Рассчитать стоимость</button>
+            <button class="chat-qr" onclick="chatQuickReply('estimate_q')">Что входит в смету?</button>
+            <button class="chat-qr" onclick="chatQuickReply('timeline')">Какие сроки ремонта?</button>
+            <button class="chat-qr" onclick="chatQuickReply('price_factors')">Что может увеличить цену?</button>
+            <button class="chat-qr" onclick="chatQuickReply('cases_q')">Посмотреть объекты</button>
+            <button class="chat-qr" onclick="chatQuickReply('contact_q')">Связаться с менеджером</button>
+        </div>
+        <div class="chat-win__contact-form" id="chatContactForm" style="display:none">
+            <form onsubmit="submitChatContactForm(event)" novalidate>
+                <input type="text" id="chatName" placeholder="Ваше имя" required autocomplete="name">
+                <input type="tel" id="chatPhone" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
+                <button type="submit" class="btn btn--primary btn--sm btn--full">Отправить</button>
+            </form>
+        </div>
+    </div>
+    <button class="chat-btn" id="chatToggleBtn" onclick="toggleChat()" aria-label="Открыть помощника">
+        <span class="chat-btn__icon">💬</span>
+        <span class="chat-btn__label">Задать вопрос</span>
+    </button>
+</div>
+
+<div class="mobile-sticky" id="mobileStickyBar">
+    <a href="#quiz" class="sticky-btn sticky-btn--calc"
+       onclick="trackEvent('hero_cta_click',{location:'mobile_sticky'})">
+        Рассчитать
+    </a>
+    <a href="https://wa.me/77775127772?text=Здравствуйте,%20хочу%20рассчитать%20стоимость%20ремонта"
+       class="sticky-btn sticky-btn--wa" target="_blank"
+       onclick="trackEvent('whatsapp_click',{location:'mobile_sticky'})">
+        WhatsApp
+    </a>
+    <a href="tel:+77775127772" class="sticky-btn sticky-btn--call"
+       onclick="trackEvent('phone_click',{location:'mobile_sticky'})">
+        Позвонить
+    </a>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
